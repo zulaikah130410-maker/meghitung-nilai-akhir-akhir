@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Bahan Ajar Evaluasi Pendidikan</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --primary:#1e3a8a;
+  --secondary:#3b82f6;
+  --soft:#eef2ff;
+  --bg:#f5f7fb;
+  --card:#ffffff;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:var(--bg);
+  color:#1f2937;
+}
+
+/* HEADER */
+header{
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:white;
+  padding:55px 20px;
+  text-align:center;
+}
+header h1{
+  font-size:36px;
+  margin-bottom:8px;
+}
+header p{
+  font-size:16px;
+  margin:4px 0;
+}
+
+/* NAV */
+nav{
+  background:white;
+  display:flex;
+  justify-content:center;
+  gap:12px;
+  padding:14px;
+  box-shadow:0 6px 20px rgba(0,0,0,.08);
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+nav button{
+  border:none;
+  background:var(--soft);
+  padding:10px 22px;
+  border-radius:30px;
+  font-size:15px;
+  font-weight:500;
+  cursor:pointer;
+  transition:.3s;
+}
+nav button.active,
+nav button:hover{
+  background:var(--primary);
+  color:white;
+}
+
+/* CONTAINER */
+.container{
+  max-width:1050px;
+  margin:auto;
+  padding:35px 20px;
+}
+
+/* CONTENT CARD */
+.content{
+  display:none;
+  background:var(--card);
+  border-radius:24px;
+  padding:35px;
+  box-shadow:0 18px 45px rgba(0,0,0,.08);
+  animation:fade .4s;
+}
+@keyframes fade{
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* SECTION TITLE */
+.section-title{
+  font-size:26px;
+  font-weight:600;
+  color:var(--primary);
+  margin-bottom:24px;
+  border-left:7px solid var(--secondary);
+  padding-left:14px;
+}
+
+/* ACCORDION */
+.accordion{
+  border-radius:18px;
+  overflow:hidden;
+  margin-bottom:16px;
+  border:1px solid #e5e7eb;
+}
+.accordion button{
+  width:100%;
+  background:#f8fafc;
+  border:none;
+  padding:18px 22px;
+  text-align:left;
+  font-size:18px;
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
+}
+.accordion button:hover{
+  background:var(--soft);
+}
+.accordion-content{
+  display:none;
+  padding:22px 26px;
+  font-size:16px;
+  line-height:1.9;
+  background:white;
+}
+
+/* SUB ACCORDION */
+.sub{
+  margin-bottom:12px;
+}
+.sub button{
+  font-size:17px;
+  font-weight:500;
+  background:#eef2ff;
+}
+.sub-content{
+  display:none;
+  padding:18px 22px;
+  background:white;
+  line-height:1.8;
+}
+
+/* TEAM */
+.team{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:20px;
+}
+.member{
+  background:linear-gradient(145deg,#eef2ff,#ffffff);
+  border-radius:20px;
+  padding:18px;
+  text-align:center;
+}
+.member img{
+  width:95px;
+  height:95px;
+  border-radius:50%;
+  object-fit:cover;
+}
+.member h4{
+  margin:12px 0 4px;
+}
+.member small{
+  color:#555;
+}
+
+/* HITUNG */
+input{
+  width:100%;
+  padding:12px;
+  margin-bottom:12px;
+  border-radius:10px;
+  border:1px solid #d1d5db;
+  font-size:15px;
+}
+.btn{
+  background:var(--primary);
+  color:white;
+  border:none;
+  padding:12px 28px;
+  border-radius:30px;
+  font-size:16px;
+  cursor:pointer;
+}
+#hasil{
+  margin-top:14px;
+  font-size:18px;
+  font-weight:600;
+}
+
+/* QR */
+.qr{
+  text-align:center;
+  margin-top:30px;
+}
+.qr img{
+  width:210px;
+  border-radius:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+/* FOOTER */
+footer{
+  background:#1e293b;
+  color:white;
+  text-align:center;
+  padding:26px;
+  margin-top:45px;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Bahan Ajar Evaluasi Pendidikan</h1>
+  <p>Penentuan Nilai Akhir Peserta Didik</p>
+  <p><strong>Kelompok 10</strong></p>
+</header>
+
+<nav>
+  <button class="active" onclick="show('home',this)">Beranda</button>
+  <button onclick="show('materi',this)">Materi</button>
+  <button onclick="show('hitung',this)">Perhitungan</button>
+  <button onclick="show('latihan',this)">Latihan</button>
+</nav>
+
+<div class="container">
+
+
+<!-- BERANDA -->
+<div id="home" class="content" style="display:block">
+  <div class="section-title">Beranda</div>
+
+  <div class="accordion">
+    <button onclick="toggle(this)">Pendahuluan</button>
+    <div class="accordion-content">
+      Penilaian merupakan salah satu komponen yang sangat penting dalam proses pendidikan. Melalui penilaian, guru dapat mengetahui sejauh mana tujuan pembelajaran telah tercapai, sementara siswa dapat memahami tingkat keberhasilan belajarnya. Nilai yang diperoleh siswa tidak hanya berfungsi sebagai angka semata, tetapi juga menjadi cerminan dari proses belajar yang telah dilalui serta dasar untuk pengambilan berbagai keputusan pendidikan.
+Nilai akhir sebagai hasil dari pengolahan berbagai bentuk penilaian, seperti tes formatif, tes sumatif, tugas, dan ulangan, memiliki peran strategis dalam sistem pendidikan. Nilai akhir digunakan untuk menentukan kenaikan kelas, kelulusan, pemberian beasiswa, serta rekomendasi untuk melanjutkan pendidikan. Oleh karena itu, proses penentuan nilai akhir harus dilakukan secara objektif, adil, dan berdasarkan pedoman yang jelas agar dapat mencerminkan prestasi siswa yang sesungguhnya.
+Selain prestasi akademik, dalam penilaian juga perlu diperhatikan faktor-faktor lain seperti usaha siswa, aspek pribadi dan sosial, serta kebiasaan bekerja. Faktor-faktor tersebut berpengaruh terhadap perkembangan siswa secara menyeluruh dan mendukung tujuan pendidikan yang tidak hanya menekankan aspek kognitif, tetapi juga pembentukan sikap dan kepribadian.
+Berdasarkan hal tersebut, pembahasan mengenai cara menentukan nilai akhir, fungsi nilai, serta faktor-faktor yang turut diperhitungkan dalam penilaian menjadi sangat penting untuk dipahami, khususnya bagi pendidik dan calon pendidik. Pemahaman yang baik terhadap konsep penilaian diharapkan dapat membantu dalam melaksanakan evaluasi pendidikan secara tepat dan bertanggung jawab.
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button onclick="toggle(this)">Penyusun</button>
+    <div class="accordion-content">
+      <div class="team">
+        <div class="member"><img src="WhatsApp Image 2026-01-03 at 21.08.58.jpeg"><h4>Anisatul Umaroh</h4><small>NIM: B2B023009</small></div>
+        <div class="member"><img src="WhatsApp Image 2026-01-04 at 05.16.02.jpeg"><h4>Zulaikah Az-Zahro</h4><small>NIM: B2B023017</small></div>
+        <div class="member"><img src="WhatsApp Image 2026-01-03 at 20.59.10.jpeg"><h4>Desfita Cahya Nuralifah</h4><small>NIM: B2B023021</small></div>
+        <div class="member"><img src="WhatsApp Image 2026-01-03 at 23.53.01.jpeg"><h4>Safitri Ningsih</h4><small>NIM: B2B023025 </small></div>
+        <div class="member"><img src="WhatsApp Image 2026-01-04 at 05.08.56.jpeg"><h4>Suci Putri Utami</h4><small>NIM: B2B023030</small></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MATERI -->
+<div id="materi" class="content">
+  <div class="section-title">Materi Pembelajaran</div>
+
+  <div class="accordion">
+    <button onclick="toggle(this)">A. Pengertian Nilai Akhir</button>
+    <div class="accordion-content">
+      Nilai akhir sering juga dikenal dengan istilah nilai final.
+      Nilai final merupakan nilai yang berupa angka atau huruf untuk melambangkan tingkat keberhasilan peserta didik setelah mereka mengikuti program pendidikan pada jenjang pendidikan tertentu, dalam jangka waktu yang telah ditentukan. 
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button onclick="toggle(this)">B. Fungsi Nilai Akhir</button>
+    <div class="accordion-content">
+
+      <div class="sub">
+        <button onclick="toggleSub(this)">1. Fungsi Instruksional</button>
+        <div class="sub-content">
+          Pemberian nilai merupakan suatu pekerjaan yang bertujuan untuk memberikan suatu balikan (feedback/ umpan balik) yang mencerminkan seberapa jauh seorang siswa telah mencapai tujuan yang ditetapkan dalam pengajaran atau sistem instruksional. Nilai rendah yang diperoleh oleh seorang atau beberapa siswa, jika disajikan dalam keadaan yang terperinci akan dapat membantu siswa dalam usaha memperbaiki dan memberi motivasi peningkatan prestasi berikutnya. Bagi pengelola pengajaran, sajian terperinci nilai siswa dapat berfungsi menunjukkan bagian-bagian proses pengajaran mana yang perlu diperbaiki.
+        </div>
+      </div>
+
+      <div class="sub">
+        <button onclick="toggleSub(this)">2. Fungsi Informatif</button>
+        <div class="sub-content">
+          Memberikan nilai siswa kepada orang tuanya mempunyai arti bahwa orang tua tersebut menjadi tahu akan kemajuan dan prestasi anaknya di sekolah. Catatan ini akan sangat berguna, terutama bagi orang tua yang ikut serta menyadari tujuan sekolah dan perkembangan putranya.
+Dengan catatan nilai untuk orang tua maka:
+a) orang tua menjadi sadar akan keadaan putranya untuk kemudian lebih baik memberikan bantuan berupa perhatian, dorongan, atau bimbingan, dan
+b) hubungan antara orang tua dengan sekolah menjadi baik.
+        </div>
+      </div>
+
+      <div class="sub">
+        <button onclick="toggleSub(this)">3. Fungsi Bimbingan</button>
+        <div class="sub-content">
+          Dengan perincian gambaran nilai siswa, petugas bimbingan akan segera tahu bagian-bagian mana dari usaha siswa di sekolah yang masih memerlukan bantuan. Catatan lengkap yang juga mencakup tingkat (rating) dalam kepribadian siswa serta sifat-sifat yang berhubungan dengan rasa sosial akan sangat membantu siswa dalam pengarahan sebagai pribadi seutuhnya.
+        </div>
+      </div>
+
+      <div class="sub">
+        <button onclick="toggleSub(this)">4. Fungsi Administratif</button>
+        <div class="sub-content">
+          <p>
+            Secara administratif, pemberian nilai akhir oleh seorang pendidik kepada peserta didiknya memiliki beberapa fungsi penting, yaitu:
+          </p>
+          <ul style="margin-left:18px; line-height:1.9;">
+            <li><strong>Memberikan beasiswa</strong> kepada peserta didik yang memiliki prestasi akademik yang baik.</li>
+            <li><strong>Memindahkan atau menempatkan siswa</strong> sesuai dengan kemampuan dan tingkat pencapaiannya.</li>
+            <li><strong>Menentukan kenaikan kelas dan kelulusan siswa</strong> pada jenjang pendidikan tertentu.</li>
+            <li><strong>Memberikan rekomendasi</strong> bagi peserta didik untuk melanjutkan pendidikan ke jenjang berikutnya.</li>
+            <li><strong>Memberi gambaran tentang prestasi siswa atau lulusan</strong> kepada pihak-pihak yang membutuhkan, seperti calon pemakai tenaga kerja.</li>
+          </ul>
+        </div>
+      </div>
+     </div>
+  </div>
+
+  <div class="accordion">
+    <button onclick="toggle(this)">C. Faktor-faktor yang Dipertimbangkan dalam Penilaian</button>
+    <div class="accordion-content">
+
+      <div class="sub">
+        <button onclick="toggleSub(this)">1. Prestasi / Pencapaian</button>
+        <div class="sub-content">
+          1)nilai prestasi harus mencerminkan tingkatan-tingkatan siswa sejauh mana telah dapat mencapai tujuan yang ditetapkan di setiap bidang studi.
+Simbol yang digunakan untuk menyatakan nilai, baik huruf maupun angka, hendaknya hanya merupakan gambaran tentang prestasi saja. Unsur pertimbangan atau kebijaksanaan guru tentang usaha dan tingkah laku siswa tidak boleh ikut berbicara pada nilai tersebut.
+      </div>
+
+      <div class="sub">
+        <button onclick="toggleSub(this)">2. Usaha</button>
+        <div class="sub-content">
+          Disamping nilai-nilai hasil belajar yang dicapai oleh peserta didik, faktor usaha yang telah mereka lakukan juga perlu mendapat pertimbangan dalam rangka penentuan nilai akhir.
+          <br><br>
+          Sebagai contoh; Seorang peserta didik hanya dapat mencapai nilai-nilai hasil belajar yang minimal (prestasinya rendah), namun apabila pendidik dengan secara cermat dapat mengamati sehingga dapat diperoleh bukti bahwa dengan nilai-nilai hasil tes, hasil belajar yang rendah sebenarnya sudah merupakan hasil usaha yang sungguh-sungguh (sangat rajin dalam mengerjakan pelajaran, tekun di dalam belajar dan sebagainya), maka sudah selayaknya kepada peserta didik tersebut dapat diberikan nilai penunjang sebagai penghargaan atas usaha sungguh-sungguh dari peserta didik itu, tanpa mengenal rasa putus asa.
+        </div>
+      </div>
+
+      <div class="sub">
+        <button onclick="toggleSub(this)">3. Aspek Pribadi dan Sosial</button>
+        <div class="sub-content">
+          Unsur ini juga perlu dilaporkan terutama yang berhubungan dengan berlangsungnya proses belajar-mengajar, misahnya mentaati tata tertib sekolah. 
+Rentangan nilai sebaiknya tidak usah lebar-lebar (lebih baik 6–10). Lebih baik lagi jika diterangkan dengan khusus dan jelas sehingga mudah dimengerti oleh guru pembimbing dan siapa saja
+        </div>
+      </div>
+
+      <div class="sub">
+        <button onclick="toggleSub(this)">4. Kebiasaan Bekerja</button>
+        <div class="sub-content">
+          Yang dimaksud dengan kebiasaan kerja di sini adalah hal-hal yang berhubungan dengan kebiasaan melakukan tugas.
+          <br><br>
+          Misalnya: tepat waktu atau tidaknya dalam menyerahkan pekerjaan rumah (PR), rapi tidaknya hasil pekerjaan rumah tersebut, ketelitiannya dalam menghitung dan sebagainya.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="accordion">
+    <button onclick="toggle(this)">D. Contoh Soal Penentuan Nilai Akhir</button>
+    <div class="accordion-content">
+
+      <!-- ESAI 1 -->
+      <div class="sub">
+        <button onclick="toggleSub(this)">ESAI 1 – Nilai Formatif dan Sumatif</button>
+        <div class="sub-content">
+          <strong>Soal:</strong><br>
+          Seorang siswa memperoleh nilai ulangan harian berturut-turut 70, 80, dan 90.
+          Nilai PTS siswa adalah 80 dan nilai PAS adalah 90.
+          Hitung nilai akhir siswa dengan menggunakan rumus nilai akhir formatif dan sumatif.
+          <br><br>
+
+          <strong>Jawaban:</strong><br>
+          <em>Rumus:</em><br>
+          NA = [(F1 + F2 + ... + Fn) / n + 2S] / 3
+          <br><br>
+
+          <em>Rata-rata formatif:</em><br>
+          (70 + 80 + 90) / 3 = 80
+          <br><br>
+
+          <em>Nilai sumatif:</em><br>
+          S = (80 + 90) / 2 = 85
+          <br><br>
+
+          <em>Nilai akhir:</em><br>
+          NA = (80 + 2 × 85) / 3 = <strong>83,33</strong>
+        </div>
+      </div>
+
+      <!-- ESAI 2 -->
+      <div class="sub">
+        <button onclick="toggleSub(this)">ESAI 2 – Tugas, Ulangan Harian, dan Ulangan Umum</button>
+        <div class="sub-content">
+          <strong>Soal:</strong><br>
+          Nilai tugas seorang siswa adalah 80, nilai ulangan harian 85,
+          dan nilai ulangan umum 90. Bobot tugas 2, ulangan harian 3,
+          dan ulangan umum 5. Hitung nilai akhir siswa.
+          <br><br>
+
+          <strong>Jawaban:</strong><br>
+          <em>Rumus:</em><br>
+          NA = (2T + 3H + 5U) / 10
+          <br><br>
+
+          <em>Perhitungan:</em><br>
+          NA = (2 × 80 + 3 × 85 + 5 × 90) / 10
+          <br><br>
+
+          NA = <strong>86,5</strong>
+        </div>
+      </div>
+
+      <!-- ESAI 3 -->
+      <div class="sub">
+        <button onclick="toggleSub(this)">ESAI 3 – Ulangan Harian dan EBTA</button>
+        <div class="sub-content">
+          <strong>Soal:</strong><br>
+          Seorang siswa memperoleh nilai ulangan harian 75, 80, dan 85.
+          Nilai EBTA siswa adalah 90. Jika bobot ulangan harian 1
+          dan bobot EBTA 2, hitung nilai akhir siswa.
+          <br><br>
+
+          <strong>Jawaban:</strong><br>
+          <em>Rumus:</em><br>
+          NA = (ΣH + 2E) / (nH + 2)
+          <br><br>
+
+          <em>Perhitungan:</em><br>
+          ΣH = 75 + 80 + 85 = 240<br>
+          nH = 3<br>
+          NA = (240 + 2 × 90) / (3 + 2)
+          <br><br>
+
+          NA = <strong>84</strong>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<!-- HITUNG -->
+<div id="hitung" class="content">
+  <div class="card">
+    <!-- 1 -->
+<div class="card">
+<h2>
+Nilai akhir diperoleh dengan menggabungkan rata-rata nilai tes formatif
+dan nilai tes sumatif (bobot 1 : 2)
+</h2>
+
+<input id="favg" type="number" placeholder="Rata-rata Nilai Formatif">
+<input id="s1" type="number" placeholder="Nilai Sumatif">
+<button onclick="hitung1()">Hitung</button>
+<div class="hasil" id="h1"></div>
+<small>Rumus: NA = (F + 2S) / 3</small>
+</div>
+
+<!-- 2 -->
+<div class="card">
+<h2>
+Nilai akhir diperoleh dari nilai tugas, ulangan harian,
+dan ulangan umum yang masing-masing diberi bobot 2, 3, dan 5
+</h2>
+
+<input id="t" type="number" placeholder="Nilai Tugas (T)">
+<input id="h" type="number" placeholder="Nilai Ulangan Harian (H)">
+<input id="u" type="number" placeholder="Nilai Ulangan Umum (U)">
+<button onclick="hitung2()">Hitung</button>
+<div class="hasil" id="h2"></div>
+<small>Rumus: NA = (2T + 3H + 5U) / 10</small>
+</div>
+
+<!-- 3 -->
+<div class="card">
+<h2>
+Nilai akhir diperoleh dari rata-rata nilai ulangan harian
+dan nilai EBTA dengan perbandingan bobot 1 : 2
+</h2>
+
+<input id="sumh" type="number" placeholder="Jumlah Nilai Ulangan Harian (∑H)">
+<input id="nh" type="number" placeholder="Frekuensi Ulangan Harian (nH)">
+<input id="e" type="number" placeholder="Nilai EBTA (E)">
+<button onclick="hitung3()">Hitung</button>
+<div class="hasil" id="h3"></div>
+<small>Rumus: NA = (∑H + 2E) / (nH + 2)</small>
+</div>
+
+<!-- 4 -->
+<div class="card">
+<h2>
+Nilai akhir diperoleh dengan merata-ratakan
+nilai tes formatif dan nilai tes sumatif
+</h2>
+
+<input id="f2" type="number" placeholder="Rata-rata Nilai Formatif">
+<input id="s2" type="number" placeholder="Nilai Sumatif">
+<button onclick="hitung4()">Hitung</button>
+<div class="hasil" id="h4"></div>
+<small>Rumus: NA = (F + S) / 2</small>
+</div>
+
+</div>
+
+<script>
+function hitung1(){
+  let f = +favg.value;
+  let s = +s1.value;
+  h1.innerHTML = "Nilai Akhir: " + ((f + 2*s)/3).toFixed(2);
+}
+
+function hitung2(){
+  let na = (2*t.value + 3*h.value + 5*u.value)/10;
+  h2.innerHTML = "Nilai Akhir: " + na.toFixed(2);
+}
+
+function hitung3(){
+  let na = (Number(sumh.value) + 2*e.value) / (Number(nh.value) + 2);
+  h3.innerHTML = "Nilai Akhir: " + na.toFixed(2);
+}
+
+function hitung4(){
+  let na = (Number(f2.value) + Number(s2.value))/2;
+  h4.innerHTML = "Nilai Akhir: " + na.toFixed(2);
+}
+</script>
+
+</div>
+<!-- LATIHAN -->
+<div id="latihan" class="content">
+  <div class="section-title">Latihan Soal</div>
+  <p>Latihan soal dapat diakses melalui QR Code berikut:</p>
+  <div class="qr">
+    <img src=" WhatsApp Image 2026-01-04 at 01.40.54.jpeg">
+    <p><em>Scan untuk mengerjakan latihan</em></p>
+  </div>
+</div>
+
+</div>
+
+<footer>
+  S1 Pendidikan Matematika – Fakultas Ilmu Pendidikan dan Humaniora<br>
+  Universitas Muhammadiyah Semarang
+</footer>
+
+<script>
+function show(id,btn){
+  document.querySelectorAll('.content').forEach(c=>c.style.display='none');
+  document.getElementById(id).style.display='block';
+  document.querySelectorAll('nav button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+function toggle(btn){
+  let c=btn.nextElementSibling;
+  c.style.display=c.style.display==='block'?'none':'block';
+}
+function toggleSub(btn){
+  let c=btn.nextElementSibling;
+  c.style.display=c.style.display==='block'?'none':'block';
+}
+function calc(){
+  let t=+document.getElementById('t').value||0;
+  let h=+document.getElementById('h').value||0;
+  let u=+document.getElementById('u').value||0;
+  let na=(2*t+3*h+5*u)/10;
+  document.getElementById('hasil').innerHTML="Nilai Akhir: <b>"+na.toFixed(2)+"</b>";
+}
+</script>
+
+</body>
+</html>
